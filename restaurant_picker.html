@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>اختار لي مطعم</title>
+<style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            direction: rtl;
+
+            text-align: center;
+
+            margin: 0;
+
+            padding: 0;
+
+            background: #ffffff;
+
+        }
+
+        header {
+
+            background: #FFD400; /* أصفر */
+
+            padding: 20px;
+
+            font-size: 26px;
+
+            font-weight: bold;
+
+            color: #000;
+
+        }
+
+        button, select {
+
+            margin-top: 25px;
+
+            padding: 15px 30px;
+
+            font-size: 18px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #000;
+
+            color: #FFF;
+
+            cursor: pointer;
+
+        }
+
+        select {
+
+            background: #FFD400;
+
+            color: #000;
+
+        }
+
+        .box {
+
+            display: inline-block;
+
+            margin-top: 40px;
+
+            background: #FFD400;
+
+            padding: 20px 30px;
+
+            border-radius: 12px;
+
+            font-size: 22px;
+
+            color: #000;
+
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+
+        }
+</style>
+</head>
+<body>
+<header>🍽️ اختار لي مطعم</header>
+<button onclick="pickAny()">اختار لي مطعم عشوائي</button>
+<br><br>
+<select id="categorySelect">
+<option value="">اختر نوع الأكل</option>
+<option value="برغر">برغر</option>
+<option value="بيتزا">بيتزا</option>
+<option value="سوشي">سوشي</option>
+<option value="لبناني">لبناني</option>
+<option value="شاورما">شاورما</option>
+<option value="مكسيكي">مكسيكي</option>
+<option value="دجاج">دجاج</option>
+</select>
+<button onclick="pickByCategory()">اختار لي حسب النوع</button>
+<div id="result"></div>
+<script>
+
+    const restaurants = {
+
+        "برغر": ["فايف قايز", "جوني روكتس", "بايكرز", "مويا", "برجرات", "هايز برغر"],
+
+        "بيتزا": ["بيتزا هت", "دومينوز", "لا بيزا", "بيتزا كومباني", "بيتزا إن"],
+
+        "سوشي": ["سوشي آرت", "واي واي سوشي", "مون سوشي", "نون سوشي"],
+
+        "لبناني": ["ليلى اللبناني", "كبابجي", "كريمز", "ابو جابر"],
+
+        "شاورما": ["شاورمر", "بيت الشاورما", "كلاود شاورما", "شاورما فاكتوري"],
+
+        "مكسيكي": ["تاكو هت", "تشيبوتلي", "تاماروس", "بوكا تاكو"],
+
+        "دجاج": ["البيك", "ريزنج كينز", "كنتاكي", "هارديز تشيكن"]
+
+    };
+
+    function pickAny() {
+
+        const keys = Object.keys(restaurants);
+
+        const randomType = keys[Math.floor(Math.random() * keys.length)];
+
+        const randomRestaurant = restaurants[randomType][Math.floor(Math.random() * restaurants[randomType].length)];
+
+        showResult(randomType, randomRestaurant);
+
+    }
+
+    function pickByCategory() {
+
+        const type = document.getElementById("categorySelect").value;
+
+        if (!type) {
+
+            alert("اختاري نوع الأكل أول 😅");
+
+            return;
+
+        }
+
+        const names = restaurants[type];
+
+        const chosenName = names[Math.floor(Math.random() * names.length)];
+
+        showResult(type, chosenName);
+
+    }
+
+    function showResult(type, name) {
+
+        document.getElementById("result").innerHTML = `
+<div class="box">
+
+                🍽️ النوع: <strong>${type}</strong><br><br>
+
+                🏷️ المطعم: <strong>${name}</strong>
+</div>
+
+        `;
+
+    }
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ar">
+<head>
